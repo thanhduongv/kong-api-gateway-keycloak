@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kong.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: kong
+    meta.helm.sh/release-name: konga
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2022-03-08T17:54:12Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: konga
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: konga
+    helm.sh/chart: konga-1.0.0
+  name: konga
+  namespace: default
+  resourceVersion: "1036917"
+  uid: 89af351a-f681-4f77-95ea-6df793c8079d
+spec:
+  rules:
+  - host: opencharity.konga.internal
+    http:
+      paths:
+      - backend:
+          service:
+            name: konga
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost
